@@ -9,9 +9,15 @@ from zope.interface import provider
 @provider(IFormFieldProvider)
 class IGeolocatable(model.Schema):
     """Form field for geolocation behavior"""
+
     geolocation = GeolocationField(
-        title=_('label_geolocation', default=u'Geolocation'),
+        title=_('label_geolocation', default=u'Coordinate'),
         description=_('help_geolocation',
-                      default=u'Click on the map to select a location, or '
-                              u'use the text input to search by address.'),
+                      default=u'Click sulla mappa per scegliere una posizione; oppure usare il box di ricerca'),
         required=False)
+
+    model.fieldset(
+         'coord',
+         label=_(u"Coordinate"),
+         fields=['geolocation']
+    )
